@@ -54,7 +54,19 @@
       fast_lap_time:    { value: null, dom: Dom.get('fast_lap_time_value')    },
       distance:    { value: null, dom: Dom.get('distance')    },
     }
-    
+
+
+// MOBİL DEĞİŞKENLER
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    // some code..
+} else {
+    window.onresize = function() {
+      $('#canvas').height($('#canvas').width() * 9 / 19);
+    };
+    $('#canvas').height($('#canvas').width() * 9 / 19);
+}
+
     //=========================================================================
     // UPDATE THE GAME WORLD
     //=========================================================================
@@ -79,7 +91,6 @@
       var startPosition = position;
 
       updateCars(dt, playerSegment, playerW);
-
       position = Util.increase(position, dt * speed, trackLength);
 
       if (keyLeft)
@@ -143,7 +154,6 @@
 
 
       for(n = 0 ; n < playerSegment.cars.length ; n++) {
-        console.log('araba çıktı');
         car  = playerSegment.cars[n];
         carW = car.sprite.w * SPRITES.SCALE;
         if (speed > car.speed) {
@@ -541,7 +551,7 @@
         { keys: [KEY.LEFT,  KEY.A], mode: 'down', action: function() { keyLeft   = true;  } },
         { keys: [KEY.RIGHT, KEY.D], mode: 'down', action: function() { keyRight  = true;  } },
         { keys: [KEY.UP,    KEY.W], mode: 'down', action: function() { keyFaster = true;  } },
-        { keys: [KEY.DOWN,  KEY.S], mode: 'down', action: function() { keyFaster = false, keySlower = true;  } },
+        // { keys: [KEY.DOWN,  KEY.S], mode: 'down', action: function() { keyFaster = false, keySlower = true;  } },
         { keys: [KEY.LEFT,  KEY.A], mode: 'up',   action: function() { keyLeft   = false; } },
         { keys: [KEY.RIGHT, KEY.D], mode: 'up',   action: function() { keyRight  = false; } },
         // { keys: [KEY.UP,    KEY.W], mode: 'up',   action: function() { keyFaster = false; } },

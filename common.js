@@ -59,6 +59,7 @@ var Util = {
   },
 
   project: function(p, cameraX, cameraY, cameraZ, cameraDepth, width, height, roadWidth) {
+    // p.camera.x sıfırlarsam kamera sabitleniyor ama araba da hareket etmiyor
     p.camera.x     = (p.world.x || 0) - cameraX;
     p.camera.y     = (p.world.y || 0) - cameraY;
     p.camera.z     = (p.world.z || 0) - cameraZ;
